@@ -1,0 +1,101 @@
+{
+  "group": {
+    "name": "ชื่อกลุ่ม (แก้ตรงนี้)",
+    "tagline": "สโลแกนสั้น ๆ ของกลุ่ม",
+    "concept": "ทีมนักศึกษาปี 3 ที่รวมคนสาย Robotics, Web และ Data ไว้ด้วยกัน เน้นทำของที่ใช้งานได้จริง ตั้งแต่หุ่นยนต์บริการไปจนถึงเว็บแอปที่มี AI",
+    "highlights": [
+      "ครบทั้ง Frontend, Backend, Robotics และ Data ในทีมเดียว",
+      "มี CI/CD ทดสอบและ deploy อัตโนมัติทุกครั้งที่ push",
+      "ทำโปรเจกต์หุ่นยนต์บริการที่ทดสอบกับ TurtleBot3 จริง"
+    ]
+  },
+  "projects": [
+    {
+      "title": "Chat AI Portfolio",
+      "description": "เว็บ portfolio ของกลุ่มที่มี AI ไกด์คอยตอบคำถามเกี่ยวกับกลุ่มและสมาชิกทุกคน",
+      "tech": ["React", "Express", "TypeScript", "PostgreSQL", "Gemini API", "GitHub Actions"],
+      "url": null
+    },
+    {
+      "title": "Hotel Booking Demand Dashboard",
+      "description": "วิเคราะห์และทำความสะอาดข้อมูลการจองโรงแรมจาก Kaggle แล้วสรุปเป็น Dashboard",
+      "tech": ["Python", "pandas", "Dashboard"],
+      "url": null
+    }
+  ],
+  "contacts": [
+    { "type": "email", "label": "อีเมลกลุ่ม", "value": "group@example.com" },
+    { "type": "github", "label": "GitHub", "value": "https://github.com/your-org/your-repo" }
+  ],
+  "members": [
+    {
+      "slug": "assachi",
+      "name": "อัสสชิ บัวชุม",
+      "nickname": "Noah",
+      "role": "Backend Developer & DevOps",
+      "bio": "นักศึกษาปี 3 สนใจหุ่นยนต์และระบบหลังบ้าน ดูแล API ฐานข้อมูล และ CI/CD ของโปรเจกต์นี้",
+      "skills": ["ROS2", "Python", "TypeScript", "Express", "PostgreSQL", "Docker"],
+      "avatarUrl": null,
+      "projects": [
+        {
+          "title": "Service Robot Kiosk (Pay-bill robot)",
+          "description": "หุ่นยนต์บริการที่ตอบโต้ผู้ใช้ รับชำระเงิน และออกบัตรคิว พร้อมหน้าจอ UI บนหุ่น",
+          "tech": ["ROS2", "Python", "TurtleBot3"],
+          "url": null
+        },
+        {
+          "title": "ROS2 Final Project: YOLO + Odometry",
+          "description": "ระบบตรวจจับวัตถุด้วย YOLO ทำงานร่วมกับ odometry client บน TurtleBot3",
+          "tech": ["ROS2", "Python", "YOLO"],
+          "url": null
+        },
+        {
+          "title": "CVRP Solver",
+          "description": "แก้ปัญหาจัดเส้นทางรถขนส่ง (CVRP) ด้วย Nearest Neighbor, 2-opt และ Clarke & Wright",
+          "tech": ["Python", "Google Colab"],
+          "url": null
+        }
+      ],
+      "contacts": [
+        { "type": "github", "label": "GitHub", "value": "https://github.com/your-username" }
+      ]
+    },
+    {
+      "slug": "member-2",
+      "name": "สมาชิกคนที่ 2 (แก้ชื่อ)",
+      "nickname": "ชื่อเล่น",
+      "role": "Frontend Developer",
+      "bio": "แนะนำตัวสั้น ๆ",
+      "skills": ["React", "CSS", "Figma"],
+      "avatarUrl": null,
+      "projects": [
+        { "title": "ชื่อผลงาน", "description": "อธิบายสั้น ๆ ว่าทำอะไร", "tech": ["React"], "url": null }
+      ],
+      "contacts": []
+    },
+    {
+      "slug": "member-3",
+      "name": "สมาชิกคนที่ 3 (แก้ชื่อ)",
+      "nickname": "ชื่อเล่น",
+      "role": "AI / Prompt Engineer",
+      "bio": "แนะนำตัวสั้น ๆ",
+      "skills": ["Prompt Engineering", "Python"],
+      "avatarUrl": null,
+      "projects": [
+        { "title": "ชื่อผลงาน", "description": "อธิบายสั้น ๆ ว่าทำอะไร", "tech": ["Python"], "url": null }
+      ],
+      "contacts": []
+    },
+    {
+      "slug": "member-4",
+      "name": "สมาชิกคนที่ 4 (แก้ชื่อ หรือลบออกถ้ากลุ่มมี 3 คน)",
+      "nickname": "ชื่อเล่น",
+      "role": "UX/UI Designer & Presenter",
+      "bio": "แนะนำตัวสั้น ๆ",
+      "skills": ["Figma", "Presentation"],
+      "avatarUrl": null,
+      "projects": [],
+      "contacts": []
+    }
+  ]
+}

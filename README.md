@@ -1,233 +1,80 @@
-# TEAMSPACE AI
+﻿# TEAMSPACE AI
 
 ### Different minds. One direction.
 
-TEAMSPACE AI is a team portfolio website with an AI-powered chat interface designed to introduce team members, showcase skills and projects, and provide an interactive way for visitors to learn about the team.
+TEAMSPACE AI is a team portfolio website with an AI-powered chat interface.
 
-## Project Overview
-
-The project combines a team portfolio website with a chat interface.
-
-Its main objectives are:
-
-- Introduce the team and its members.
-- Showcase member roles, skills, and projects.
-- Provide an interactive chat interface.
-- Prepare the frontend for future backend and AI integration.
-- Support responsive layouts across different screen sizes.
-
-## Current Development Status
-
-**Frontend:** Implemented and tested in Mock API mode.
-
-**Backend:** Pending implementation and API confirmation.
-
-The frontend currently uses mock responses so development and testing can continue without waiting for the backend.
-
-## Features
-
-### Portfolio
-
-- Team introduction
-- Team member cards
-- Skills and technology information
-- Project showcase
-- Contact section
-- Responsive navigation
-- Footer
-- Scroll reveal animations
-
-### Chat Interface
-
-- Interactive chat UI
-- Mock API responses
-- Quick question suggestions
-- Typing indicator
-- Message timestamps
-- Copy assistant responses
-- Retry functionality
-- Reset conversation
-- Local chat history
-- Error handling
-
-## Technology Stack
-
-| Category | Technology |
-|---|---|
-| Frontend Framework | React |
-| Programming Language | TypeScript |
-| Build Tool | Vite |
-| Routing | React Router |
-| Styling | CSS |
-| Icons | Lucide React, React Icons |
-| HTTP Requests | Fetch API |
-| Local Storage | Browser localStorage |
-| Planned Backend | Express API |
-| Planned Database | PostgreSQL |
+The repository contains the frontend application, backend API, and project documentation.
 
 ## Project Structure
 
 ```text
-team-portfolio-ai/
-│
-├── FE/
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── data/
-│   │   ├── hooks/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── types/
-│   │   └── styles/
-│   │
-│   ├── .env.example
-│   ├── .gitignore
-│   └── package.json
-│
-├── docs/
-│   └── API_CONTRACT.md
-│
-├── README.md
-└── DEVELOPMENT_LOG.md
+AIE312/
+├── FE/                     # React + TypeScript + Vite frontend
+├── BE/                     # Express + TypeScript backend
+├── docs/                   # Project documentation
+│   ├── API_CONTRACT.md
+│   ├── FRONTEND_SETUP.md
+│   └── BACKEND_SETUP.md
+├── PROJECT_ROADMAP.md
+├── DEVELOPMENT_LOG.md
+└── README.md
 ```
+
+## Components
+
+### Frontend (`FE/`)
+
+- React
+- TypeScript
+- Vite
+- React Router
+- Responsive portfolio and chat interface
+- Mock API mode for frontend development
+
+### Backend (`BE/`)
+
+- Express
+- TypeScript
+- PostgreSQL
+- Portfolio API
+- AI-powered chat API
+- Chat history
+
+## Documentation
+
+| Document | Description |
+|---|---|
+| `docs/FRONTEND_SETUP.md` | Original frontend documentation and setup |
+| `docs/BACKEND_SETUP.md` | Original backend documentation and setup |
+| `docs/API_CONTRACT.md` | Frontend and backend API contract |
+| `PROJECT_ROADMAP.md` | Project roadmap |
+| `DEVELOPMENT_LOG.md` | Frontend development history |
 
 ## Getting Started
 
-### Requirements
+See the component-specific setup guides:
 
-- Node.js
-- npm
-- Git
-- Visual Studio Code
+- Frontend: `docs/FRONTEND_SETUP.md`
+- Backend: `docs/BACKEND_SETUP.md`
 
-### Installation
+Each component has its own dependencies and environment configuration.
 
-Open the terminal and navigate to the frontend directory:
+## Environment and Security
 
-```bash
-cd FE
-```
+- Do not commit `.env` files.
+- Do not expose API keys or database credentials.
+- Use `.env.example` files as configuration references.
+- Keep backend secrets on the server.
 
-Install dependencies:
+## Development Status
 
-```bash
-npm install
-```
+The frontend has passed its production build and runtime checks in Mock API mode.
 
-### Environment Configuration
-
-Create a `.env.local` file inside the `FE` directory.
-
-```env
-VITE_USE_MOCK_API=true
-VITE_API_BASE_URL=http://localhost:3000
-```
-
-The application currently uses Mock API mode.
-
-### Run Development Server
-
-```bash
-npm run dev
-```
-
-Open the local URL displayed in the terminal.
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-## Application Routes
-
-| Route | Description |
-|---|---|
-| `/` | Team Portfolio |
-| `/chat` | Chat Interface |
-
-## Chat API
-
-The chat service is located at:
-
-```text
-FE/src/services/chatApi.ts
-```
-
-The frontend supports two modes:
-
-- **Mock API:** Uses local project data to generate simulated responses.
-- **Real API:** Prepared for future backend integration.
-
-The proposed API endpoint is:
-
-```http
-POST /messages
-```
-
-Expected request:
-
-```json
-{
-  "text": "Hello TEAMSPACE"
-}
-```
-
-Expected response:
-
-```json
-{
-  "reply": "..."
-}
-```
-
-The API contract is a proposal and must be confirmed by the backend team before real integration.
-
-See `docs/API_CONTRACT.md` for details.
-
-## Testing Status
-
-The following frontend tests have been reported as successful:
-
-- Production build
-- Team member questions
-- Skills questions
-- Project questions
-- Technology stack questions
-- Portfolio and Chat navigation
-- Copy, Retry, and Reset interactions
-- Chat history persistence
-- Responsive layouts
-
-## Development Documentation
-
-See `DEVELOPMENT_LOG.md` for the development history and implementation steps.
-
-## Security Notes
-
-- Never commit `.env.local`.
-- Never expose AI API keys in frontend code.
-- Never store database passwords in frontend environment variables.
-- Keep private credentials on the backend.
-- Use `.env.example` for non-secret configuration examples.
-
-## Future Development
-
-- Complete backend implementation.
-- Confirm the API contract.
-- Integrate the real AI service.
-- Test frontend and backend communication.
-- Perform final deployment.
+The backend source code is included in `BE/`. Full frontend-backend integration and end-to-end validation remain separate tasks.
 
 ---
 
 **TEAMSPACE AI**
+
 *Different minds. One direction.*
