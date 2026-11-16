@@ -1,4 +1,3 @@
-﻿
 import {
   teamInfo,
   members,
@@ -35,7 +34,7 @@ function generateMockReply(question: string): string {
   // ======================================
 
   if (
-    /member|team member|who|à¸ªà¸¡à¸²à¸Šà¸´à¸|à¹ƒà¸„à¸£/.test(q)
+    /member|team member|who|สมาชิก|ใคร/.test(q)
   ) {
 
     // Prevent unverified member information from being exposed.
@@ -68,7 +67,7 @@ function generateMockReply(question: string): string {
   // ======================================
 
   if (
-    /tech stack|technology|technologies|à¹€à¸—à¸„à¹‚à¸™à¹‚à¸¥à¸¢à¸µ/.test(q)
+    /tech stack|technology|technologies|เทคโนโลยี/.test(q)
   ) {
 
     const memberSkills = verifiedMembers.length > 0
@@ -103,7 +102,7 @@ function generateMockReply(question: string): string {
   // ======================================
 
   if (
-    /skill|à¸—à¸±à¸à¸©à¸°|à¸„à¸§à¸²à¸¡à¸ªà¸²à¸¡à¸²à¸£à¸–/.test(q)
+    /skill|ทักษะ|ความสามารถ/.test(q)
   ) {
 
     // Do not return placeholder skills.
@@ -129,7 +128,7 @@ function generateMockReply(question: string): string {
   // ======================================
 
   if (
-    /project|work|à¸œà¸¥à¸‡à¸²à¸™|à¹‚à¸›à¸£à¹€à¸ˆà¸à¸•à¹Œ|à¹‚à¸„à¸£à¸‡à¸à¸²à¸£/.test(q)
+    /project|work|ผลงาน|โปรเจกต์|โครงการ/.test(q)
   ) {
 
     if (projects.length === 0) {
