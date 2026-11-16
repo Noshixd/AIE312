@@ -6,7 +6,6 @@ export interface ChatTurn {
   content: string;
 }
 
-// ฟังก์ชันที่รับ system prompt + บทสนทนา แล้วคืนคำตอบ (แยกเป็น type เพื่อสลับเป็นตัวปลอมตอนทดสอบได้)
 export type LlmFn = (system: string, turns: ChatTurn[]) => Promise<string>;
 
 export class LlmError extends Error {
@@ -21,21 +20,19 @@ export class LlmError extends Error {
 let client: OpenAI | null = null;
 
 export function isLlmConfigured(): boolean {
-  return Boolean(config.llm.apiKey);
+  return Boolean(config.llm.apiKey?.trim());
 }
 
 function getClient(): OpenAI {
   if (!client) {
-    // ใช้ OpenAI SDK แต่ชี้ไปที่ endpoint แบบ OpenAI-compatible ของ Gemini (หรือเจ้าอื่นก็ได้)
     client = new OpenAI({
       apiKey: config.llm.apiKey,
       baseURL: config.llm.baseUrl,
-      // FE ของ Week 11 รอคำตอบแชตแค่ 30 วินาที → ต้องตอบ (หรือ error) ให้ทันก่อนนั้น
-      // ถ้า retry อีกรอบจะเกิน 30 วินาที FE ขึ้น error แต่ BE ยังบันทึกคำตอบทีหลัง ผู้ใช้จะงง
       timeout: config.llm.timeoutMs,
       maxRetries: 0,
     });
   }
+
   return client;
 }
 
@@ -46,9 +43,23 @@ export const askLlm: LlmFn = async (system, turns) => {
       messages: [{ role: "system", content: system }, ...turns],
       temperature: 0.4,
     });
-    return completion.choices[0]?.message?.content?.trim() || "(โมเดลไม่ได้ส่งคำตอบกลับมา)";
+
+    return (
+      completion.choices[0]?.message?.content?.trim() ||
+      "(The model did not return a response.)"
+    );
   } catch (err) {
-    const e = err as { status?: number; message?: string };
-    throw new LlmError(e.message || "LLM request failed", e.status);
+    if (err instanceof LlmError) {
+      throw err;
+    }
+
+    const error = err as { status?: number; message?: string };
+
+    console.error("LLM Error:", err);
+
+    throw new LlmError(
+      error.message || "LLM request failed",
+      error.status,
+    );
   }
 };
