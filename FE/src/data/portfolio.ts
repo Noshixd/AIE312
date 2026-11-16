@@ -1,9 +1,11 @@
-
 import type {
   TeamMember,
   TeamProject,
   TeamProfile
 } from "../types/portfolio";
+
+// ข้อมูลชุดเดียวกับ BE/seed/portfolio.json (ที่ AI ใช้ตอบคำถาม)
+// ถ้าแก้ข้อมูลที่นี่ ให้แก้ใน BE/seed/portfolio.json ด้วย เพื่อให้หน้าเว็บกับคำตอบของ AI ตรงกัน
 
 // ======================================
 // 1. TEAM PROFILE
@@ -11,21 +13,21 @@ import type {
 // ======================================
 
 export const teamInfo: TeamProfile = {
-  name: "TEAMSPACE",
+  name: "Quiksilver",
 
   tagline: "Different minds. One direction.",
 
   description:
-    "We are a team of students who combine " +
-    "creativity, technology and teamwork to build " +
-    "meaningful digital experiences.",
+    "A team of third-year Artificial Intelligence Engineering " +
+    "and Data Science students from Bangkok University. " +
+    "We bring together Backend Development, Frontend Design, " +
+    "AI Engineering, and DevOps to build practical technology solutions.",
 
-  // Add real contact information later
   email: "",
-  github: "",
+  github: "https://github.com/Noshixd/AIE312",
   instagram: "",
   linkedin: "",
-  location: ""
+  location: "Bangkok University, Thailand"
 };
 
 // ======================================
@@ -39,35 +41,44 @@ export const members: TeamMember[] = [
   {
     id: 1,
 
-    name: "ชื่อสมาชิกคนที่ 1",
+    name: "อัสสชิ บัวชุม (Noah)",
 
-    role: "Frontend Developer & UI/UX",
+    role: "Backend Developer",
 
-    initials: "M1",
+    initials: "N",
 
-    // Profile has not been verified yet
-    isPlaceholder: true,
+    isPlaceholder: false,
 
     bio:
-      "Responsible for designing and developing " +
-      "the user interface and user experience " +
-      "of the TeamSpace AI project.",
+      "Third-year student in Artificial Intelligence Engineering " +
+      "and Data Science at Bangkok University. Interested in applying " +
+      "AI and data to practical systems, including web applications, " +
+      "robotics, and data analytics.",
 
     skills: [
-      "React",
+      "Python",
       "TypeScript",
-      "CSS",
-      "UI/UX Design"
+      "JavaScript",
+      "SQL",
+      "Express",
+      "PostgreSQL",
+      "React",
+      "Supabase",
+      "ROS2",
+      "YOLO",
+      "Docker",
+      "Git"
     ],
 
     contribution:
-      "Portfolio Website and Chat UI",
-
-    avatar: "",
+      "Express API, PostgreSQL database and chat history",
 
     personalProjects: [
-      "Personal Portfolio Website",
-      "UI Design Project"
+      "Hotel Management System - AIE313",
+      "ROS2 Person Detection and Odometry",
+      "Service Robot Kiosk",
+      "Vehicle Routing Problem Solver",
+      "Hotel Booking Demand Dashboard"
     ]
   },
 
@@ -75,50 +86,83 @@ export const members: TeamMember[] = [
   {
     id: 2,
 
-    name: "ชื่อสมาชิกคนที่ 2",
+    name: "ศวิตา โตประสิทธิ์ (Zene)",
 
-    role: "กรอกบทบาทจริง",
+    role: "Frontend Developer & UX/UI Designer",
 
-    initials: "M2",
+    initials: "Z",
 
-    isPlaceholder: true,
+    isPlaceholder: false,
 
     bio:
-      "กรอกคำแนะนำตัวและความสามารถของสมาชิกคนที่ 2",
+      "Third-year student in Artificial Intelligence Engineering " +
+      "and Data Science at Bangkok University. Interested in user " +
+      "experience, interface design, and frontend development.",
 
     skills: [
-      "กรอกทักษะที่ 1",
-      "กรอกทักษะที่ 2",
-      "กรอกทักษะที่ 3"
+      "React",
+      "UX/UI Design",
+      "Frontend Development",
+      "Python",
+      "SQL",
+      "PostgreSQL",
+      "Git",
+      "GitHub",
+      "Teamwork"
     ],
 
     contribution:
-      "กรอกหน้าที่ที่รับผิดชอบในโปรเจกต์"
+      "Portfolio website, Chat UI and UX/UI design",
+
+    personalProjects: [
+      "SMA - Smurf Mechanical Arm",
+      "PDPA Hackathon"
+    ]
   },
 
   // MEMBER 03
   {
     id: 3,
 
-    name: "ชื่อสมาชิกคนที่ 3",
+    name: "ปัณณธร บุ้งทอง (Stamp)",
 
-    role: "กรอกบทบาทจริง",
+    role: "AI Engineer & DevOps",
 
-    initials: "M3",
+    initials: "S",
 
-    isPlaceholder: true,
+    isPlaceholder: false,
 
     bio:
-      "กรอกคำแนะนำตัวและความสามารถของสมาชิกคนที่ 3",
+      "Third-year student in Artificial Intelligence Engineering " +
+      "and Data Science at Bangkok University. Focuses on building " +
+      "AI applications, data systems, and reliable development " +
+      "and deployment workflows.",
 
     skills: [
-      "กรอกทักษะที่ 1",
-      "กรอกทักษะที่ 2",
-      "กรอกทักษะที่ 3"
+      "Python",
+      "Machine Learning",
+      "Data Science",
+      "SQL",
+      "PostgreSQL",
+      "Supabase",
+      "Docker",
+      "CI/CD",
+      "Pandas",
+      "Scikit-learn",
+      "Tableau",
+      "Power BI"
     ],
 
     contribution:
-      "กรอกหน้าที่ที่รับผิดชอบในโปรเจกต์"
+      "AI integration, CI/CD pipeline and deployment",
+
+    personalProjects: [
+      "Digital Asset KYC & AML Transaction Monitoring System",
+      "AI Hackathon Route Optimization 2026 (Top 21)",
+      "OIL SHOCK HACK! 2026 (Top 9)",
+      "AIHack Thailand 2025 (Top 8)",
+      "Thailand Real Estate Case Competition 2025 (Top 20)"
+    ]
   }
 
 ];
@@ -133,23 +177,53 @@ export const projects: TeamProject[] = [
   {
     id: 1,
 
-    title: "TeamSpace AI",
+    title: "TeamSpace AI - Group Portfolio",
 
     category: "AI WEB APPLICATION",
 
     description:
-      "An interactive team portfolio website " +
-      "that allows visitors to explore team members, " +
-      "skills and projects through an AI assistant.",
+      "An AI-powered group portfolio website that introduces Quiksilver, " +
+      "showcases member profiles and projects, and allows visitors " +
+      "to ask questions through an AI chatbot.",
 
     technologies: [
       "React",
       "TypeScript",
       "Express",
-      "PostgreSQL"
+      "PostgreSQL",
+      "LLM API",
+      "Docker",
+      "CI/CD"
     ],
 
-    status: "IN DEVELOPMENT"
+    status: "LIVE",
+
+    github: "https://github.com/Noshixd/AIE312",
+    demo: "https://teamspace-web-pl79.onrender.com"
+  },
+
+  {
+    id: 2,
+
+    title: "Digital Asset KYC & AML Transaction Monitoring System",
+
+    category: "DATABASE SYSTEM",
+
+    description:
+      "A digital asset exchange management database covering customer KYC, " +
+      "account management, transaction monitoring, and AML risk analysis, " +
+      "with 22 tables, 7 analytical views, 16 analytical SQL queries, " +
+      "and an LLM-powered natural-language query interface.",
+
+    technologies: [
+      "PostgreSQL",
+      "Supabase",
+      "SQL",
+      "LLM",
+      "Database Design"
+    ],
+
+    status: "TEAM PROJECT"
   }
 
 ];
