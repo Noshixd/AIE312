@@ -1,3 +1,7 @@
+import { config as loadEnv } from "dotenv";
+
+loadEnv();
+
 // โหลดค่าจากไฟล์ .env (ถ้ามี) — บน server จริงให้ตั้งค่าเป็น environment variable แทน
 try {
   process.loadEnvFile();
