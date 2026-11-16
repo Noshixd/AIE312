@@ -10,6 +10,28 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: chat
+          POSTGRES_PASSWORD: chat
+          POSTGRES_DB: chat
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U chat -d chat"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgres://chat:chat@localhost:5432/chat
+      DATABASE_SSL: false
+      AUTO_MIGRATE: true
+      SEED_MODE: always
+      NODE_ENV: test
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -26,6 +48,10 @@ jobs:
       - name: Build Backend
         working-directory: BE
         run: npm run build
+
+      - name: Run Database Migrations
+        working-directory: BE
+        run: npm run migrate
 
       - name: Test Backend
         working-directory: BE
