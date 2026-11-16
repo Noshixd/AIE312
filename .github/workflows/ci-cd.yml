@@ -1,0 +1,72 @@
+﻿
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: chat
+          POSTGRES_PASSWORD: chat
+          POSTGRES_DB: chat
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U chat -d chat"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgres://chat:chat@localhost:5432/chat
+      TEST_DATABASE_URL: postgres://chat:chat@localhost:5432/chat_test
+      DATABASE_SSL: false
+      AUTO_MIGRATE: true
+      SEED_MODE: always
+      NODE_ENV: test
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Backend Dependencies
+        working-directory: BE
+        run: npm ci
+
+      - name: Build Backend
+        working-directory: BE
+        run: npm run build
+
+      - name: Run Database Migrations
+        working-directory: BE
+        run: npm run migrate
+
+      - name: Create Test Database
+        run: |
+          docker exec "$(docker ps -q --filter ancestor=postgres:16 | head -n 1)" psql -U chat -d chat -c "CREATE DATABASE chat_test;"
+
+      - name: Test Backend
+        working-directory: BE
+        run: npm test
+
+      - name: Install Frontend Dependencies
+        working-directory: FE
+        run: npm ci
+
+      - name: Build Frontend
+        working-directory: FE
+        run: npm run build

@@ -1,4 +1,4 @@
-
+﻿
 import {
   teamInfo,
   members,
@@ -8,8 +8,8 @@ import {
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ?? "";
 
-const USE_MOCK_API =
-  import.meta.env.VITE_USE_MOCK_API !== "false";
+export const USE_MOCK_API =
+  import.meta.env.VITE_USE_MOCK_API === "true";
 
 
 // ======================================
@@ -35,7 +35,7 @@ function generateMockReply(question: string): string {
   // ======================================
 
   if (
-    /member|team member|who|สมาชิก|ใคร/.test(q)
+    /member|team member|who|à¸ªà¸¡à¸²à¸Šà¸´à¸|à¹ƒà¸„à¸£/.test(q)
   ) {
 
     // Prevent unverified member information from being exposed.
@@ -68,7 +68,7 @@ function generateMockReply(question: string): string {
   // ======================================
 
   if (
-    /tech stack|technology|technologies|เทคโนโลยี/.test(q)
+    /tech stack|technology|technologies|à¹€à¸—à¸„à¹‚à¸™à¹‚à¸¥à¸¢à¸µ/.test(q)
   ) {
 
     const memberSkills = verifiedMembers.length > 0
@@ -103,7 +103,7 @@ function generateMockReply(question: string): string {
   // ======================================
 
   if (
-    /skill|ทักษะ|ความสามารถ/.test(q)
+    /skill|à¸—à¸±à¸à¸©à¸°|à¸„à¸§à¸²à¸¡à¸ªà¸²à¸¡à¸²à¸£à¸–/.test(q)
   ) {
 
     // Do not return placeholder skills.
@@ -129,7 +129,7 @@ function generateMockReply(question: string): string {
   // ======================================
 
   if (
-    /project|work|ผลงาน|โปรเจกต์|โครงการ/.test(q)
+    /project|work|à¸œà¸¥à¸‡à¸²à¸™|à¹‚à¸›à¸£à¹€à¸ˆà¸à¸•à¹Œ|à¹‚à¸„à¸£à¸‡à¸à¸²à¸£/.test(q)
   ) {
 
     if (projects.length === 0) {
@@ -183,31 +183,36 @@ async function mockSendMessage(
 // REAL BACKEND API
 // ======================================
 
+export interface ChatApiResult {
+  reply: string;
+  conversationId: string | null;
+}
+
 async function realSendMessage(
-  text: string
-): Promise<string> {
+  text: string,
+  conversationId?: string | null
+): Promise<ChatApiResult> {
 
   if (!API_BASE_URL) {
     throw new Error("API URL is not configured.");
   }
 
   const response = await fetch(
-    `${API_BASE_URL}/messages`,
+    `${API_BASE_URL}/chat`,
     {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json"
       },
-
-      body: JSON.stringify({ text })
+      body: JSON.stringify({
+        text,
+        ...(conversationId ? { conversationId } : {})
+      })
     }
   );
 
   if (!response.ok) {
-    throw new Error(
-      `Server error: ${response.status}`
-    );
+    throw new Error(`Server error: ${response.status}`);
   }
 
   const data: unknown = await response.json();
@@ -215,15 +220,21 @@ async function realSendMessage(
   if (
     typeof data !== "object" ||
     data === null ||
-    !("reply" in data) ||
-    typeof data.reply !== "string"
+    !("conversationId" in data) ||
+    typeof data.conversationId !== "string" ||
+    !("assistantMessage" in data) ||
+    typeof data.assistantMessage !== "object" ||
+    data.assistantMessage === null ||
+    !("text" in data.assistantMessage) ||
+    typeof data.assistantMessage.text !== "string"
   ) {
-    throw new Error(
-      "Invalid response format from backend."
-    );
+    throw new Error("Invalid response format from backend.");
   }
 
-  return data.reply;
+  return {
+    reply: data.assistantMessage.text,
+    conversationId: data.conversationId
+  };
 }
 
 
@@ -232,12 +243,16 @@ async function realSendMessage(
 // ======================================
 
 export async function sendChatMessage(
-  text: string
-): Promise<string> {
+  text: string,
+  conversationId?: string | null
+): Promise<ChatApiResult> {
 
   if (USE_MOCK_API) {
-    return mockSendMessage(text);
+    return {
+      reply: await mockSendMessage(text),
+      conversationId: null
+    };
   }
 
-  return realSendMessage(text);
+  return realSendMessage(text, conversationId);
 }

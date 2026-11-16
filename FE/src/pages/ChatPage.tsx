@@ -1,4 +1,4 @@
-
+﻿
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -13,7 +13,7 @@ import type { ChatMessage } from "../types/chat";
 import ChatMessageItem from "../components/chat/ChatMessageItem";
 import ChatInput from "../components/chat/ChatInput";
 import TypingIndicator from "../components/chat/TypingIndicator";
-import { sendChatMessage } from "../services/chatApi";
+import { sendChatMessage, USE_MOCK_API } from "../services/chatApi";
 
 // ======================================
 // MESSAGE ID GENERATOR
@@ -37,7 +37,7 @@ function createWelcomeMessage(): ChatMessage {
     content:
       "Hi! Welcome to TeamSpace. I'm your AI assistant. " +
       "You can ask me about our team members, skills and projects. " +
-      "I'm currently running in demo mode using our portfolio data.",
+      "Ask me about our team members, skills and projects.",
 
     createdAt: new Date().toISOString()
   };
@@ -48,6 +48,7 @@ function createWelcomeMessage(): ChatMessage {
 // ======================================
 
 const CHAT_STORAGE_KEY = "teamspace-chat-history-v1";
+const CONVERSATION_STORAGE_KEY = "teamspace-conversation-id-v1";
 
 // Validate saved message before using it
 function isChatMessage(value: unknown): value is ChatMessage {
@@ -125,6 +126,13 @@ export default function ChatPage() {
     () => loadChatHistory()
   );
 
+  // Conversation ID State
+  const [conversationId, setConversationId] = useState<string | null>(
+    () => {
+      if (typeof window === "undefined") return null;
+      return localStorage.getItem(CONVERSATION_STORAGE_KEY);
+    }
+  );
   // Loading State
   const [isLoading, setIsLoading] = useState(false);
 
@@ -139,6 +147,20 @@ export default function ChatPage() {
     useState(false);
 
   // ======================================
+// ======================================
+// AUTO SAVE CONVERSATION ID
+// ======================================
+
+  useEffect(() => {
+    if (conversationId) {
+      localStorage.setItem(
+        CONVERSATION_STORAGE_KEY,
+        conversationId
+      );
+    } else {
+      localStorage.removeItem(CONVERSATION_STORAGE_KEY);
+    }
+  }, [conversationId]);
   // AUTO SCROLL
   // ======================================
 
@@ -226,12 +248,19 @@ export default function ChatPage() {
     setIsLoading(true);
 
     try {
-      const reply = await sendChatMessage(question);
+      const result = await sendChatMessage(
+        question,
+        conversationId
+      );
+
+      if (result.conversationId) {
+        setConversationId(result.conversationId);
+      }
 
       const aiMessage: ChatMessage = {
         id: createMessageId("assistant"),
         role: "assistant",
-        content: reply,
+        content: result.reply,
         createdAt: new Date().toISOString()
       };
 
@@ -250,7 +279,6 @@ export default function ChatPage() {
           "We couldn't get a response. " +
           "Please check your connection and try again.",
         createdAt: new Date().toISOString(),
-
         isError: true,
         retryText: question
       };
@@ -265,7 +293,6 @@ export default function ChatPage() {
     }
   }
 
-  // ======================================
   // SEND MESSAGE
   // ======================================
 
@@ -336,6 +363,7 @@ export default function ChatPage() {
 
     // Start a fresh conversation
     setMessages([createWelcomeMessage()]);
+    setConversationId(null);
   }
 
   // ======================================
@@ -396,9 +424,11 @@ export default function ChatPage() {
 
           <div className="chat-header-actions">
 
-            <span className="demo-badge">
-              DEMO MODE
-            </span>
+            {USE_MOCK_API && (
+              <span className="demo-badge">
+                DEMO MODE
+              </span>
+            )}
 
             <button
               type="button"
@@ -498,10 +528,14 @@ export default function ChatPage() {
       {/* Notice */}
 
       <p className="chat-disclaimer">
-        Demo Mode · Your conversation is saved
-        locally in this browser.
+        {USE_MOCK_API
+          ? "Demo Mode · Your conversation is saved locally in this browser."
+          : "Live AI · Connected to the TeamSpace server."}
       </p>
 
     </div>
   );
 }
+
+
+
