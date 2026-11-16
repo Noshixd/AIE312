@@ -8,7 +8,7 @@ import {
 
 // Follow the same API mode selection as chatApi.ts.
 const isMockApiMode =
-  import.meta.env.VITE_USE_MOCK_API !== "false";
+  import.meta.env.VITE_USE_MOCK_API === "true";
 
 export default function Navbar() {
   return (
