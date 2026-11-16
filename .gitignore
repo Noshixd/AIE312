@@ -1,4 +1,4 @@
-# Dependencies
+﻿# Dependencies
 node_modules/
 **/node_modules/
 .npm/
@@ -38,3 +38,6 @@ Thumbs.db
 *.db-shm
 **/*.db*
 **/.neon
+
+# npm cache
+.npm/
