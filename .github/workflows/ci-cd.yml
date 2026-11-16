@@ -1,4 +1,5 @@
-﻿name: CI Pipeline
+﻿
+name: CI Pipeline
 
 on:
   push:
@@ -27,6 +28,7 @@ jobs:
 
     env:
       DATABASE_URL: postgres://chat:chat@localhost:5432/chat
+      TEST_DATABASE_URL: postgres://chat:chat@localhost:5432/chat_test
       DATABASE_SSL: false
       AUTO_MIGRATE: true
       SEED_MODE: always
@@ -52,6 +54,10 @@ jobs:
       - name: Run Database Migrations
         working-directory: BE
         run: npm run migrate
+
+      - name: Create Test Database
+        run: |
+          docker exec "$(docker ps -q --filter ancestor=postgres:16 | head -n 1)" psql -U chat -d chat -c "CREATE DATABASE chat_test;"
 
       - name: Test Backend
         working-directory: BE
