@@ -6,6 +6,12 @@ import {
 } from "lucide-react";
 
 import { Link } from "react-router-dom";
+import quiksilverSurfboard from "../assets/portfolio/01-surfboard-pink-yellow.jpg";
+import hawaiianPostcard from "../assets/portfolio/02-hawaiian-postcard.jpg";
+import oceanWave from "../assets/portfolio/03-ocean-wave.jpg";
+import tropicalPopArt from "../assets/portfolio/04-y2k-tropical-pop-art.jpg";
+import tropicalSunset from "../assets/portfolio/05-y2k-tropical-sunset.jpg";
+import quiksilverReference from "../assets/portfolio/06-quiksilver-logo-reference.jpg";
 
 import {
   teamInfo,
@@ -107,9 +113,14 @@ export default function PortfolioPage() {
             <div className="visual-orbit orbit-one"></div>
             <div className="visual-orbit orbit-two"></div>
 
-            <div className="visual-symbol">
-              <Sparkles size={48} />
-            </div>
+            <div className="visual-surfboard-wrap">
+  <img
+    src={quiksilverSurfboard}
+    alt="Quiksilver surfboard"
+    className="hero-surfboard-image"
+  />
+  <span className="surfboard-stamp">QUIK / SURF 2000</span>
+</div>
 
           </div>
 
@@ -120,6 +131,43 @@ export default function PortfolioPage() {
 
         </div>
 
+      </section>
+
+      {/* HAWAIIAN SURF Y2K EDITORIAL */}
+      <section className="surf-editorial-section" aria-label="Hawaiian surf visual collection">
+        <div className="surf-editorial-heading">
+          <span className="section-kicker">A LITTLE ESCAPE FROM REALITY</span>
+          <h2>GOOD VIBES. ENDLESS SUMMER.</h2>
+          <p>Hawaiian surf spirit meets the playful energy of the Y2K era.</p>
+        </div>
+
+        <div className="surf-editorial-grid">
+          <figure className="surf-editorial-card surf-card-postcard">
+            <img src={hawaiianPostcard} alt="Vintage Hawaiian surf postcard" />
+            <figcaption>ISLAND STATE OF MIND</figcaption>
+          </figure>
+          <figure className="surf-editorial-card surf-card-wave">
+            <img src={oceanWave} alt="Ocean wave in the summer sun" />
+            <figcaption>CHASE THE BLUE</figcaption>
+          </figure>
+          <figure className="surf-editorial-card surf-card-pop">
+            <img src={tropicalPopArt} alt="Colorful Y2K tropical pop art" />
+            <figcaption>Y2K SUMMER CLUB</figcaption>
+          </figure>
+          <figure className="surf-editorial-card surf-card-sunset">
+            <img src={tropicalSunset} alt="Tropical sunset" />
+            <figcaption>GOLDEN HOUR FOREVER</figcaption>
+          </figure>
+          <figure className="surf-editorial-card surf-card-logo">
+            <img src={quiksilverReference} alt="Surf brand visual reference" />
+            <figcaption>SURF CULTURE / 2000</figcaption>
+          </figure>
+        </div>
+
+        <div className="surf-editorial-footer">
+          <span>MADE FOR THE ENDLESS SUMMER</span>
+          <span>EST. IN THE DIGITAL DAYDREAM</span>
+        </div>
       </section>
 
       {/* ===========================

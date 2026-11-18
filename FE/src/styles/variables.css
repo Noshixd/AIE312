@@ -5,28 +5,28 @@
 
 :root {
   /* Brand and surfaces */
-  --color-ink: #0b0e0d;
-  --color-ink-rgb: 11, 14, 13;
+  --color-ink: #071521;
+  --color-ink-rgb: 7, 21, 33;
   --color-bg-primary: var(--color-ink);
-  --color-bg-surface: #111612;
-  --color-bg-elevated: #141a14;
-  --color-bg-hover: #1a2416;
+  --color-bg-surface: #0d1b28;
+  --color-bg-elevated: #13283a;
+  --color-bg-hover: #1b3549;
 
   /* Text */
   --color-text-primary: #f2f4f1;
-  --color-text-secondary: #969d96;
-  --color-text-muted: #7f8b7d;
+  --color-text-secondary: #b6c4ce;
+  --color-text-muted: #91a6b5;
   --color-text-on-accent: var(--color-ink);
 
   /* Borders */
-  --color-border-subtle: #242a25;
-  --color-border: #303830;
-  --color-border-strong: #384135;
+  --color-border-subtle: #273b4a;
+  --color-border: #354d5e;
+  --color-border-strong: #466173;
 
   /* Accent */
-  --color-accent: #c2f36b;
-  --color-accent-hover: #d6ff8c;
-  --color-accent-rgb: 194, 243, 107;
+  --color-accent: #69c5e8;
+  --color-accent-hover: #9adbf2;
+  --color-accent-rgb: 105, 197, 232;
 
   /* Feedback */
   --color-danger: #ef9a9a;
